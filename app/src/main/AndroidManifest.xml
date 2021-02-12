@@ -34,12 +34,15 @@
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <activity android:name=".MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+        </activity>
+        <activity android:name=".RxjavaActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name=".service.IMPushService">
             <intent-filter>
                 <action android:name="android.intent.action.IMPushService" />

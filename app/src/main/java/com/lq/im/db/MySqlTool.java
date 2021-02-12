@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MySqlTool {
 
-    private static List<String> getDBSqls(){
+    public static List<String> getDBSqls(){
         List<String> list=new ArrayList<>();
         //用户表
         list.add("create table if not exists  person (" +
@@ -22,15 +22,6 @@ public class MySqlTool {
                 " username text," +
                 " password text" +
                 ")");
-        list.add("create table if not exists  IMPackage (" +
-                " id integer primary key AUTOINCREMENT ," +
-                " sender text ," +
-                " receiver text," +
-                " message text," +
-                " createTime INTEGER," +
-                " isRead integer" +
-                ")");
-
         //消息表
         list.add("create table if not exists  IMPackage (" +
                 " id integer primary key AUTOINCREMENT ," +
@@ -46,8 +37,5 @@ public class MySqlTool {
     public static void alterDB(Context context){
         PersonModel personModel=new PersonModel("123456","1478963");
         new UserDBHelper().add(personModel);
-
-        DBOpenHelper openHelper= DBOpenHelper.getInstance(context);
-        openHelper.exeSqls(getDBSqls());
     }
 }

@@ -4,7 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.lq.im.db.MySqlTool;
 import com.lq.im.util.SafeCheck;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +16,7 @@ import java.util.List;
  */
 
 public class DBOpenHelper extends SQLiteOpenHelper {
-    private static int Version=1;
+    private static int Version=2;
     private static final String TAG = "[MySqliteHelper]";
     private static final String DB_NAME="IM_DB";
     private static DBOpenHelper openHelper;
@@ -54,6 +58,10 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        List<String> list= MySqlTool.getDBSqls();
+        for (int i=0;i<list.size();i++) {
+            db.execSQL(list.get(i));
+        }
         Log.d(TAG, "-------> onCreate");
     }
 
